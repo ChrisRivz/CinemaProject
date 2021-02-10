@@ -1,0 +1,2 @@
+# CinemaProject
+This project is a website that allows you to search for movies in the API of The Movie Database and on the main page it shows a list of new releases and another list of popular movies. Clicking on the image or title of a movie shows the relevant information about it in another view. Movies can be added to a favorites list displayed on the home page, which has the same functionality as the previous lists.
