@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Movies project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="src/css/main-style.css">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script defer src="node_modules/@fortawesome/fontawesome-free/js/brands.js"></script>
+  <script defer src="node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
+  <script defer src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+  <style>
+    .fakeimg {
+      height: 200px;
+      background: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <section class="media-content"  :style="{ 'background-image': 'linear-gradient(rgba(4, 37, 65, 0.5),rgba(4, 37, 65, 0.5)),url(' + image + ')' }">
+      <div class="cover-image">
+        <div class="text-content">
+
+          <div class="header-text-content">
+            <h1>Welcome!</h1>
+            <p>Millions of movies. Explore now. </p>
+          </div>
+
+          <form class="form-search">
+
+            <input type="text" placeholder="Search for a movie, tv, show, person...">
+            <button type="button">Search</button>
+          </form>
+
+
+        </div>
+      </div>
+    </section>
+
+    <section class="movies-content">
+
+      <div class="text-content">
+
+        <h2>Whats! Popular</h2>
+
+
+      </div>
+
+      <div class="column-content-movies">
+
+        <div class="card-style-1" v-for='data in ArrayPopularMovies'>
+
+          <div class="image">
+            <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
+          </div>
+
+          <div class="text-content-movies">
+            <h3>{{data.title}}</h3>
+            <label>{{data.release_date}}</label>
+          </div>
+
+
+        </div>
+
+
+
+
+      </div>
+
+
+    </section>
+
+
+    <section class="movies-content">
+
+      <div class="text-content">
+        <h2>Whats! Top Rated</h2>
+      </div>
+
+
+      <div class="column-content-movies">
+
+        <div class="card-style-1" v-for='data in ArrayTopRatedMovies'>
+
+          <div class="image">
+            <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
+          </div>
+
+          <div class="text-content-movies">
+            <h3>{{data.title}}</h3>
+            <label>{{data.release_date}}</label>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+      <div>
+
+      </div>
+
+    </section>
+
+    <section class="movies-content">
+
+      <div class="text-content">
+        <h2>Whats! Up Coming</h2>
+      </div>
+
+
+      <div class="column-content-movies">
+
+        <div class="card-style-1" v-for='data in ArrayUpcomingMovies'>
+
+          <div class="image">
+            <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
+          </div>
+
+          <div class="text-content-movies">
+            <h3>{{data.title}}</h3>
+            <label>{{data.release_date}}</label>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+      <div>
+
+      </div>
+
+    </section>
+
+    <section class="footer">
+      <section class="flex-container">
+
+
+        <div class="content-footer">
+          <li><a href="https://github.com/ChrisRivz" target="_blanck"><i
+            class="fab fa-github"></i> My Github </a></li>
+        </div>
+
+        <div class="content-footer">
+          <li><a  href="#Portfolio" target="_blanck"><i
+            class="fas fa-blog"></i> My Portfolio </a></li>
+          <br>
+
+        </div>
+
+        <div class="content-footer">
+          <li><a  href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blanck"><i
+            class="fas fa-cloud"></i> API Documentation </a></li>
+        </div>
+
+      </section>
+    </section>
+  </div>
+
+  <script src="src/js/main.js"></script>
+</body>
+
+</html>
