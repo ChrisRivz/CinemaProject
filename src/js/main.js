@@ -19,14 +19,14 @@ var vue = new Vue({
       image: '',
       countDown: 0,
       date: moment(60*.1*1000),
+      ArrayDataMovie:{},
+      DetailShow: false
          
 
     },
     mounted(){
 
         this.Firstdata()
-
-
 
     },
     methods:{
@@ -100,7 +100,7 @@ var vue = new Vue({
         clearInterval(interval)
         interval = setInterval(()=>{
           
-          console.log(this.countDown)
+          
           this.date = moment(this.date.subtract(1,'seconds'))
           this.countDown = this.date.format('mm:ss')        
           if(this.countDown == '00:00')
@@ -115,7 +115,30 @@ var vue = new Vue({
 
         },1000)
 
+      },
+      SelectedMovie(data){
+
+        console.log(data);
+        console.log('Aqui')
+        
+        this.ArrayDataMovie = {
+
+          InitialInfo: {
+            id: data.id,
+            overview: data.overview,
+            poster_path: pathImgServer + data.poster_path,
+            release_date: data.release_date,
+            title: data.title
+          }
+
+        }
+
+
+        this.DetailShow = true;
+        console.log(this.ArrayDataMovie)
+
       }
+
 
     }
 

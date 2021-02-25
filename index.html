@@ -33,7 +33,8 @@
 <body>
 
   <div id="app">
-    <section class="media-content"  :style="{ 'background-image': 'linear-gradient(rgba(4, 37, 65, 0.5),rgba(4, 37, 65, 0.5)),url(' + image + ')' }">
+    <section class="media-content"
+      :style="{ 'background-image': 'linear-gradient(rgba(4, 37, 65, 0.5),rgba(4, 37, 65, 0.5)),url(' + image + ')' }">
       <div class="cover-image">
         <div class="text-content">
 
@@ -53,123 +54,156 @@
       </div>
     </section>
 
-    <section class="movies-content">
+    <div v-if='DetailShow'>
+      <section class="movie-detail" 
+      :style="{ 'background-image': 'linear-gradient(rgba(4, 37, 65, 0.5),rgba(4, 37, 65, 0.5)),url(' + ArrayDataMovie.InitialInfo.poster_path + ')' }">
+        <div class="flex-container-movie movie-detail-cover">
 
-      <div class="text-content">
+          <div class="container-movie-detail">
+            <div class="image">
+              <img :src="ArrayDataMovie.InitialInfo.poster_path " />
+              <div style="text-align: center;"> 
+                <ul class="list-streaming">
+                  <i class="s_icon s_icon_amazon fab fa-amazon"></i>
+                  <i class="s_icon s_icon_amazon fab fa-amazon"></i>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="container-movie-detail">
+            <h3>{{ArrayDataMovie.InitialInfo.title}} <span>({{ArrayDataMovie.InitialInfo.release_date}})</span> </h3>
+            <ul class="list-genero">
+              <li><a>Drama</a></li>
+              <li><a>Scr-Fi & Fantasy</a></li>
+            </ul>
 
-        <h2>Whats! Popular</h2>
+            <br>
+            <legend>El hombre más rápido vivo.</legend>
+            <h5>General view</h5>
+            <label>
+              {{ArrayDataMovie.InitialInfo.overview}}
+            </label>
 
-
-      </div>
-
-      <div class="column-content-movies">
-
-        <div class="card-style-1" v-for='data in ArrayPopularMovies'>
-
-          <div class="image">
-            <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
           </div>
 
-          <div class="text-content-movies">
-            <h3>{{data.title}}</h3>
-            <label>{{data.release_date}}</label>
+        </div>
+      </section>
+    </div>
+    <div v-else='DetailShow'>
+      <section class="movies-content">
+
+        <div class="text-content">
+
+          <h2>Whats! Popular</h2>
+
+
+        </div>
+
+        <div class="column-content-movies">
+
+          <div class="card-style-1" v-for='data in ArrayPopularMovies'>
+
+            <div class="image" v-on:click="SelectedMovie(data)">
+              <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
+            </div>
+
+            <div class="text-content-movies" >
+              <h3>{{data.title}}</h3>
+              <label>{{data.release_date}}</label>
+            </div>
+
+
           </div>
+
+
 
 
         </div>
 
 
+      </section>
+      <section class="movies-content">
+
+        <div class="text-content">
+          <h2>Whats! Top Rated</h2>
+        </div>
 
 
-      </div>
+        <div class="column-content-movies">
+
+          <div class="card-style-1" v-for='data in ArrayTopRatedMovies'>
+
+            <div class="image">
+              <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
+            </div>
+
+            <div class="text-content-movies">
+              <h3>{{data.title}}</h3>
+              <label>{{data.release_date}}</label>
+            </div>
 
 
-    </section>
-
-
-    <section class="movies-content">
-
-      <div class="text-content">
-        <h2>Whats! Top Rated</h2>
-      </div>
-
-
-      <div class="column-content-movies">
-
-        <div class="card-style-1" v-for='data in ArrayTopRatedMovies'>
-
-          <div class="image">
-            <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
-          </div>
-
-          <div class="text-content-movies">
-            <h3>{{data.title}}</h3>
-            <label>{{data.release_date}}</label>
           </div>
 
 
         </div>
 
+        <div>
 
-      </div>
+        </div>
 
-      <div>
+      </section>
+      <section class="movies-content">
 
-      </div>
-
-    </section>
-
-    <section class="movies-content">
-
-      <div class="text-content">
-        <h2>Whats! Up Coming</h2>
-      </div>
+        <div class="text-content">
+          <h2>Whats! Up Coming</h2>
+        </div>
 
 
-      <div class="column-content-movies">
+        <div class="column-content-movies">
 
-        <div class="card-style-1" v-for='data in ArrayUpcomingMovies'>
+          <div class="card-style-1" v-for='data in ArrayUpcomingMovies'>
 
-          <div class="image">
-            <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
-          </div>
+            <div class="image">
+              <img v-bind:src="'https://image.tmdb.org/t/p/original'+data.poster_path" />
+            </div>
 
-          <div class="text-content-movies">
-            <h3>{{data.title}}</h3>
-            <label>{{data.release_date}}</label>
+            <div class="text-content-movies">
+              <h3>{{data.title}}</h3>
+              <label>{{data.release_date}}</label>
+            </div>
+
+
           </div>
 
 
         </div>
 
+        <div>
 
-      </div>
+        </div>
 
-      <div>
+      </section>
+    </div>
 
-      </div>
-
-    </section>
 
     <section class="footer">
       <section class="flex-container">
 
 
         <div class="content-footer">
-          <li><a href="https://github.com/ChrisRivz" target="_blanck"><i
-            class="fab fa-github"></i> My Github </a></li>
+          <li><a href="https://github.com/ChrisRivz" target="_blanck"><i class="fab fa-github"></i> My Github </a></li>
         </div>
 
         <div class="content-footer">
-          <li><a  href="#Portfolio" target="_blanck"><i
-            class="fas fa-blog"></i> My Portfolio </a></li>
+          <li><a href="#Portfolio" target="_blanck"><i class="fas fa-blog"></i> My Portfolio </a></li>
           <br>
 
         </div>
 
         <div class="content-footer">
-          <li><a  href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blanck"><i
-            class="fas fa-cloud"></i> API Documentation </a></li>
+          <li><a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blanck"><i
+                class="fas fa-cloud"></i> API Documentation </a></li>
         </div>
 
       </section>
