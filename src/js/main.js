@@ -4,6 +4,7 @@ const APIKey = '441d495ebe8791b161d79de1fae46029'
 const URL_PopularMovies = 'https://api.themoviedb.org/3/movie/popular?api_key='
 const URL_TopRated = 'https://api.themoviedb.org/3/movie/top_rated?api_key='
 const URL_UPComing = 'https://api.themoviedb.org/3/movie/upcoming?api_key='
+const URL_movie = 'https://api.themoviedb.org/3/movie/'
 
 
 const pathImgServer = "https://image.tmdb.org/t/p/original"
@@ -15,12 +16,23 @@ var vue = new Vue({
 
       ArrayPopularMovies: [],
       ArrayTopRatedMovies:[],
-      ArrayUpcomingMovies:[],     
+      ArrayUpcomingMovies:[],  
+      
+      CloneListPopulasMovies: [],
+      CloneListTopRatedMovies: [],
+      ClonteListUpComingMovies: [],
+
       image: '',
       countDown: 0,
       date: moment(60*.1*1000),
       ArrayDataMovie:{},
-      DetailShow: false
+      DetailShow: false,
+      Movie: {
+
+        id: 0
+      },
+      Search: '',
+      ListMoviesSearch: []
          
 
     },
@@ -45,7 +57,7 @@ var vue = new Vue({
         .then(response =>{
 
           this.ArrayPopularMovies = response.data.results
-          console.log(this.ArrayPopularMovies)
+          this.CloneListPopulasMovies = response.data.results
 
           this.image = pathImgServer + this.ArrayPopularMovies[0].poster_path       
           this.Chronometer()
@@ -65,7 +77,7 @@ var vue = new Vue({
         .then(response => {
 
           this.ArrayTopRatedMovies = response.data.results
-          console.log(this.ArrayTopRatedMovies)
+          this.CloneListTopRatedMovies = response.data.results
 
         })
         .catch(error =>{
@@ -82,7 +94,7 @@ var vue = new Vue({
         .then(response => {
 
           this.ArrayUpcomingMovies = response.data.results
-          console.log(this.ArrayTopRatedMovies)
+          this.ClonteListUpComingMovies = response.data.results
 
         })
         .catch(error =>{
@@ -118,8 +130,6 @@ var vue = new Vue({
       },
       SelectedMovie(data){
 
-        console.log(data);
-        console.log('Aqui')
         
         this.ArrayDataMovie = {
 
@@ -135,7 +145,32 @@ var vue = new Vue({
 
 
         this.DetailShow = true;
-        console.log(this.ArrayDataMovie)
+      },
+      returnAllMovies(){
+
+
+        this.DetailShow = false;
+        this.Search = '';
+        this.ArrayPopularMovies = this.CloneListPopulasMovies
+        this.ArrayTopRatedMovies = this.CloneListTopRatedMovies
+        this.ArrayUpcomingMovies = this.ClonteListUpComingMovies
+
+      },
+      searchMovie(){
+        
+        this.ArrayPopularMovies = this.CloneListPopulasMovies
+        const resultPopular = this.ArrayPopularMovies.filter(item => item.original_title.includes(this.Search))
+        this.ArrayPopularMovies = resultPopular;
+
+        this.ArrayTopRatedMovies = this.CloneListTopRatedMovies
+        const resultTopRated = this.ArrayTopRatedMovies.filter(item => item.original_title.includes(this.Search))
+        this.ArrayTopRatedMovies = resultTopRated
+
+        this.ArrayUpcomingMovies = this.ClonteListUpComingMovies
+        const resultUpComing = this.ArrayUpcomingMovies.filter(item => item.original_title.includes(this.Search))
+        this.ArrayUpcomingMovies = resultUpComing
+        
+
 
       }
 

@@ -61,7 +61,7 @@ body *{
 
 }
 
-.form-search button{
+.form-search button, .btn-return{
     display: inline-flex;
     justify-content: center;
     align-content: center;
@@ -77,10 +77,22 @@ body *{
     right: -1px;
 }
 
+.btn-return{
+
+    position: unset !important;
+    float: right;
+}
+
+.Btn-return-div input[type="submit"], button {
+    font-weight: 700;
+}
 .form-search  input[type="submit"], button {
     font-weight: 700;
 }
+.Btn-return-div button:hover{
 
+    color:black;
+}
 .form-search button:hover{
 
     color:black;
@@ -255,4 +267,9 @@ body *{
     margin: 30px;
 
     
+}
+
+.btn-return{
+
+
 }
